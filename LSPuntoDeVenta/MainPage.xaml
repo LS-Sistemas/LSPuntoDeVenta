@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.DataGrid;assembly=Syncfusion.Maui.DataGrid"
+             x:Class="LSPuntoDeVenta.MainPage" BackgroundImageSource="fondols.jpg">
+
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0" Padding="0">
+
+            <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                <Image
+                Source="logolsviejo.jpg" Margin="10,0,10,0"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="150" WidthRequest="250" Aspect="Fill"
+                HorizontalOptions="StartAndExpand" />
+
+                <Label
+                Text="$2569.65" TextColor="#FF0000" FontAttributes="Bold"
+                FontSize="120" Margin="10,0,10,0"
+                HorizontalOptions="EndAndExpand" />
+            </StackLayout>
+
+
+            <syncfusion:SfDataGrid x:Name="dataGrid" MaximumHeightRequest="325" Margin="10,0,10,0"    GridLinesVisibility="Both" HeaderGridLinesVisibility="Vertical"
+            ColumnWidthMode="Fill" Padding="0" RowHeight="30" HeaderRowHeight="30" 
+            AutoGenerateColumnsMode="None"  SelectionMode="Single"
+            ItemsSource="{Binding OrderInfoCollection}">
+
+                <syncfusion:SfDataGrid.DefaultStyle>
+                    <syncfusion:DataGridStyle HeaderRowBackground="#00907F" HeaderRowFontAttributes="Bold" HeaderRowFontSize="20" GridLineColor="Black" 
+                                          HeaderRowTextColor="White" RowFontSize="18" RowFontAttributes="Bold" RowBackground="Transparent" 
+                                          RowTextColor="#212121" GridLineStrokeThickness="2" SelectionBackground="#AFD5FB" CurrentCellBorderColor="Blue" />
+                </syncfusion:SfDataGrid.DefaultStyle>
+
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:DataGridTextColumn HeaderText="Código"  CellPadding="10,0,0,0"  Width="150" HeaderTextAlignment="Center" 
+                                   MappingName="Codigo" CellTextAlignment="Start"/>
+
+                    <syncfusion:DataGridTextColumn HeaderText="Cantidad" Width="150" HeaderTextAlignment="Center" 
+                                   MappingName="Cantidad" CellTextAlignment="Start"/>
+
+                    <syncfusion:DataGridTextColumn HeaderText="Artículo" MinimumWidth="350" HeaderTextAlignment="Center"
+                                               MappingName="Articulo" CellTextAlignment="Start"/>
+
+                    <syncfusion:DataGridTextColumn HeaderText="Precio Unit." Width="200" HeaderTextAlignment="Center"
+                                   MappingName="PrecioUnit"/>
+
+                    <syncfusion:DataGridTextColumn HeaderText="IMPORTE" Width="200"  HeaderTextAlignment="Center"
+                                   MappingName="Importe" CellTextAlignment="Start"/>
+                </syncfusion:SfDataGrid.Columns>
+
+            </syncfusion:SfDataGrid>
+
+            <Frame Padding="5" BackgroundColor="Transparent" Margin="10,40,10,0" CornerRadius="3">
+                <Grid ColumnSpacing="5" BackgroundColor="Transparent" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Row="0" Grid.Column="0" Padding="0" HasShadow="True" CornerRadius="3" BackgroundColor="Transparent" >
+                        <Entry WidthRequest="140"/>
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="1" Padding="0" HasShadow="True" CornerRadius="3" BackgroundColor="Transparent" >
+                        <Entry WidthRequest="145"/>
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="2" Padding="0" HasShadow="True" CornerRadius="3" BackgroundColor="Transparent" >
+                        <Entry HorizontalOptions="FillAndExpand"/>
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="3" Padding="0" HasShadow="True" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand">
+                        <Entry WidthRequest="190"/>
+                    </Frame>
+                    <Frame Grid.Row="0" Grid.Column="4" Padding="0" HasShadow="True" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand">
+                        <Entry WidthRequest="200"/>
+                    </Frame>
+                </Grid>
+
+            </Frame>
+
+            <StackLayout Margin="10,2,10,2" Spacing="10" Orientation="Horizontal" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+
+                <AbsoluteLayout HeightRequest="80" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button CornerRadius="3" BackgroundColor="#C5EDED" AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Nuevo" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="plus.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout HeightRequest="80" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button x:Name="btnDatos" Clicked="btnDatos_Clicked"  CornerRadius="3" BackgroundColor="#0582DC"  AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Datos" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="profile.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout HeightRequest="80" HorizontalOptions="CenterAndExpand" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button CornerRadius="3" BackgroundColor="#C5EDED" AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Descuentos" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="discount.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout HorizontalOptions="EndAndExpand" HeightRequest="80" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button CornerRadius="3" BackgroundColor="#0582DC" AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Ver Último" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="lupa.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout HorizontalOptions="End" HeightRequest="80" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button CornerRadius="3" BackgroundColor="#C5EDED" AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Finalizar" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="printing.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+                <AbsoluteLayout HorizontalOptions="End" HeightRequest="80" WidthRequest="150" BackgroundColor="Transparent">
+                    <Button CornerRadius="3" BackgroundColor="#0582DC" AbsoluteLayout.LayoutBounds="0,0" HeightRequest="80" WidthRequest="150" Padding="25" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Label Text="Salir" VerticalOptions="EndAndExpand" TextColor="Black" FontSize="18" AbsoluteLayout.LayoutBounds="0.5,1" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                    <Image Source="logout.png" BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0.5,0.3" HeightRequest="30" WidthRequest="30" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                </AbsoluteLayout>
+
+
+            </StackLayout>
+
+            <StackLayout Margin="10,2,10,2" Padding="0" Spacing="20" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+
+                <Frame Padding="5" HasShadow="False" Margin="0,0,5,0" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" >
+                    <StackLayout  Spacing="0" Padding="0" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+
+                        <StackLayout  Spacing="0" Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                            <Label Text="RS: Cons. Final" FontAttributes="Bold" VerticalOptions="Start" TextColor="Black" FontSize="20" />
+                            <Label Text="CV: CONTADO" FontAttributes="Bold" VerticalOptions="StartAndExpand" TextColor="Black" FontSize="20" />
+                        </StackLayout>
+
+
+                        <StackLayout  Spacing="0" Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="End">
+                            <Label Text="LS" FontAttributes="Bold" VerticalOptions="Start" TextColor="Green" FontSize="20" />
+                            <Label Text="LP: PUBLICO" FontAttributes="Bold" VerticalOptions="StartAndExpand" TextColor="Blue" FontSize="20" />
+                        </StackLayout>
+
+
+                    </StackLayout>
+
+                </Frame>
+
+                <Frame Padding="5" HasShadow="False" Margin="0,0,5,0" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="End" >
+                    <StackLayout  Spacing="0" Orientation="Horizontal" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+
+                        <StackLayout  Spacing="0" Margin="0,0,10,0" Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="Start">
+                            <Label Text="Turno" FontAttributes="Bold" VerticalOptions="Start" TextColor="#000080" FontSize="20" />
+                            <Frame Padding="0" HasShadow="False" HorizontalOptions="StartAndExpand" CornerRadius="3" BorderColor="Black" BackgroundColor="Transparent" >
+                                <Entry WidthRequest="200"  HeightRequest="35" Text="25/10/2008" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#000080"/>
+                            </Frame>
+                        </StackLayout>
+
+
+                        <StackLayout  Spacing="0" Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Start" HorizontalOptions="StartAndExpand">
+                            <Label Text="Nro." FontAttributes="Bold" VerticalOptions="Start" TextColor="#000080" FontSize="20" />
+                            <Frame Padding="0"  HasShadow="False" HorizontalOptions="StartAndExpand" CornerRadius="3" BorderColor="Black" BackgroundColor="Transparent" >
+                                <Entry WidthRequest="100"  HeightRequest="35" Text="01" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#000080"/>
+                            </Frame>
+                        </StackLayout>
+
+
+                    </StackLayout>
+
+                </Frame>
+
+
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="End">
+                    <StackLayout Margin="0" Spacing="0" Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="End">
+                        <Label Text="Lineas" VerticalOptions="Start" FontAttributes="Bold" TextColor="#000080" FontSize="20" />
+                        <Frame Padding="0" BorderColor="Black" VerticalOptions="StartAndExpand" HasShadow="False" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="Start">
+                            <Entry WidthRequest="130"  HeightRequest="35" Text="0" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="#000080"/>
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+
+
+            </StackLayout>
+
+            <StackLayout Margin="10,2,10,2" Padding="0" Spacing="20" Orientation="Horizontal" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+
+                <Frame Padding="5" HasShadow="False" Margin="0,0,5,0" WidthRequest="150" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="Start" >
+                    <Image
+                Source="lslogo.png" Margin="10,10,10,10"
+                HeightRequest="50" WidthRequest="50" Aspect="Fill"
+                HorizontalOptions="StartAndExpand" />
+                </Frame>
+
+                <Frame Padding="5" HasShadow="False" Margin="0,0,5,0" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" >
+                    <Label Text="Punto de Venta" Margin="10,0,0,0" FontAttributes="Bold" VerticalOptions="Start" TextColor="#000080" 
+                       FontSize="50" />
+                </Frame>
+
+
+                <Frame Padding="20,5,20,5" HasShadow="False" BorderColor="Black" CornerRadius="3" BackgroundColor="Transparent" HorizontalOptions="End">
+                    <StackLayout  Spacing="0"  Orientation="Vertical" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="End">
+                        <Label Text="© LS SISTEMAS"  VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#FF0000" FontSize="40" />
+                        <Label Text="GOYA CTES - ARGENTINA"  VerticalOptions="Start" HorizontalOptions="Center" FontAttributes="Bold" TextColor="#000080"
+                           FontSize="20" />
+                    </StackLayout>
+                </Frame>
+
+
+            </StackLayout>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+
+</ContentPage>
